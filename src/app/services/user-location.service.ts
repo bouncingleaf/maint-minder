@@ -14,7 +14,6 @@ export class UserLocationService {
     const c = position.coords;
     // const url = 'https://maps.googleapis.com/maps/api/geocode/json'
     //   + '?latlng=' + c.latitude + ',' + c.longitude
-    //   + '&key=' + 'AIzaSyAQ_8W64ecuhhq69FcS58nz5xk9FM3AMIQ';
     // this.http
     //   .get(url)
     //   .map((res: Response) => res.json())
