@@ -1,0 +1,38 @@
+<h2>{{title}}</h2>
+<button class="btn btn-primary" (click)="save()">Save</button>
+<button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+    <form #addEditForm="ngForm">
+      <section class="form-block">
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input id="date" name="date" [(ngModel)]="tempEvent.date" type="date" />
+        </div>
+        <div class="form-group">
+          <label for="odometer">Odometer: </label>
+          <input id="odometer" name="odometer" [(ngModel)]="tempEvent.odometer" type="number" [maxLength]="7" />
+        </div>
+        <div class="form-group">
+          <label for="serviceLocation">Location: </label>
+          <input id="serviceLocation" name="serviceLocation" [(ngModel)]="tempLocation" type="text" list="suggestions" #loc (keyup)="newLocation(loc.value)"
+            size="60" />
+          <datalist id="suggestions" *ngIf="locationSuggestions">
+            <option *ngFor="let suggestion of locationSuggestions" [value]="suggestion.text">
+          </datalist>
+        </div>
+        <div class="form-group">
+          <label for="cost">Cost: </label>
+          <input id="cost" name="cost" [(ngModel)]="tempEvent.cost" type="number" [maxLength]="10" />
+        </div>
+        <app-add-edit-tasks [selectedTaskIDs]="tempEvent.taskIDs" (tasksChange)="onTasksChange($event)"></app-add-edit-tasks>
+        <app-add-edit-notes [notes]="tempEvent.notes" (notesChange)="onNotesChange($event)"></app-add-edit-notes>
+      </section>
+    </form>
+  </div>
+  <!-- Removed - did not get attachments to work in time -->
+  <!-- <div class="col-xs-12 col-sm-12 col-md-8 col-lg-4 col-xl-4">
+    <app-add-edit-attachments></app-add-edit-attachments>
+  </div> -->
+</div>

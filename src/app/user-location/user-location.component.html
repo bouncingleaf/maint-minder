@@ -1,0 +1,19 @@
+<h2>
+  My Location
+</h2>
+<p>
+  When you tell Maint Minder about work that was done on your vehicle, you can enter the location where the work was done,
+  such as a repair shop or car dealer. If Maint Minder knows where you are, it can offer better suggestions for places local
+  to you.
+</p>
+<p *ngIf="canUseGeolocation()">
+  <button class="btn btn-primary" (click)="getLocation()">Find me!</button>
+</p>
+<p *ngIf="!canUseGeolocation()">
+  Unfortunately, your browser doesn't support geolocation. You'll still be able to enter place names, Maint Minder just can't help narrow it down.
+</p>
+<!-- Removed, no time to implement -->
+<!-- <p>
+  <label for="where">Enter Zip code or City, State: </label>
+  <input id="where" type="text" />
+</p> -->

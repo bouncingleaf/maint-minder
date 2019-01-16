@@ -1,0 +1,12 @@
+<header class="header header-6">
+  <div class="branding">
+    <a class="title" routerLink="home">Maint Minder</a>
+  </div>
+  <div class="header-actions">
+    <a class="nav-link nav-text" routerLink="vehicle" routerLinkActive="active">Vehicle: {{shared.displayVehicle()}}</a>
+    <a class="nav-link nav-text" routerLink="location" routerLinkActive="active">Location: {{shared.displayLocation()}}</a>
+    <a class="nav-link nav-icon" routerLink="settings" routerLinkActive="active">
+      <clr-icon shape="cog"></clr-icon>
+    </a>
+  </div>
+</header>

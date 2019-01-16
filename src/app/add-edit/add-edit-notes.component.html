@@ -1,0 +1,4 @@
+    <div class="form-group">
+      <label for="notes">Notes: </label>
+      <textarea id="notes" rows="5" name="notes" [value]="notes" #noteField (change)="onChange(noteField.value)"></textarea>
+    </div>

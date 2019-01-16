@@ -1,0 +1,19 @@
+<div class="form-group">
+  <label>Work done:
+              </label>
+  <div class="checkbox-inline" *ngFor="let task of favoriteTasks">
+    <input type="checkbox" [id]="task.id" [checked]="isSelected(task)" #checkbox (change)="checkboxChanged(task.id,checkbox.checked)">
+    <label [for]="task.id">{{task.name}}</label>
+  </div>
+  <clr-dropdown>
+    <button type="button" class="btn btn-link" clrDropdownTrigger>
+      <clr-icon shape="add" class="is-highlight" size="24"></clr-icon>
+       ADD
+    </button>
+    <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
+      <button type="button" clrDropdownItem *ngFor="let task of otherTasks" (click)="addNewTask(task.name)">{{task.name}}</button>
+      <div class="dropdown-divider"></div>
+      <input type="text" #newTask placeholder="Enter a new item..." (change)="addNewTask(newTask.value)" />
+    </clr-dropdown-menu>
+  </clr-dropdown>
+</div>

@@ -1,0 +1,33 @@
+<h2>
+  Settings & About
+</h2>
+<h3>
+  Location
+</h3>
+<p>
+  Your current location: {{shared.displayLocation()}}. <a routerLink="../location/">Edit location</a>
+</p>
+<h3>
+  Vehicle
+</h3>
+<p>
+  Your current vehicle: {{shared.displayVehicleExtended()}}. <a routerLink="../vehicle/">Edit vehicle</a>
+</p>
+<!-- Incomplete functionality removed -->
+<!-- <h3>
+  Favorites
+</h3>
+<app-settings-favorites></app-settings-favorites> -->
+<h3>
+  About
+</h3>
+<p>Maint Minder was written by Jessica M. Roy for Boston University's <a href="https://www.bu.edu/csmet/cs701/">MET CS 701</a>, Rich Internet Applications. It uses:</p>
+<ul>
+  <li><a href="https://angular.io/">Angular</a> and <a href="http://reactivex.io/rxjs/">RxJS.</a></li>
+  <li><a href="https://vmware.github.io/clarity/documentation">VMWare's Project Clarity</a> for UI.</li>
+  <li><a href="https://www.carqueryapi.com/">CarQueryAPI.com</a> for car make and model information.</li>
+  <li><a href="https://developers.arcgis.com/rest/geocode/api-reference/geocoding-suggest.htm">ArcGIS World Geocoding Service</a>
+    for the service location field (i.e., where the work is being done).</li>
+  <li><a href="https://developers.google.com/maps/documentation/geocoding/intro">Google Maps geocoding</a>
+    for helping determine the user's own location.</li>
+</ul>

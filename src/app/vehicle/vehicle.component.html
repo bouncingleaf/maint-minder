@@ -1,0 +1,47 @@
+<h2>
+  My Vehicle
+</h2>
+<button class="btn btn-primary" (click)="save()">Save</button>
+<button class="btn btn-secondary" (click)="clear()">Clear</button>
+
+<form>
+  <section class="form-block">
+    <div class="form-group">
+      <label for="vehicleName">Name: (e.g., "the truck")</label>
+      <input name="vehicleName" #name type="text" [(ngModel)]="tempVehicle.name" required />
+    </div>
+    <div class="form-group">
+      <label for="year">Year: </label>
+      <div class="select">
+        <select name="year" #year [(ngModel)]="tempVehicle.year" (keyup.enter)="refreshDropdownData()" (blur)="refreshDropdownData()">
+        <option *ngFor="let year of validYears">{{year}}</option>
+      </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="make">Make: </label>
+      <div class="select">
+        <!-- This updates the real tempVehicle object and refreshes the make lookup -->
+        <select name="make" #make [(ngModel)]="tempVehicleMakeName" (change)="selectedMake()">
+        <!-- This tricks HTML into not selecting the first alphabetical option by default, e.g. Acura -->
+        <option selected="selected" disabled="disabled"></option>
+        <option *ngFor="let make of makes" [value]="make.name">{{make.name}}</option>
+      </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="model">Model: </label>
+      <div class="select">
+        <!-- Can't choose a model until you've chosen a make -->
+        <select name="model" [disabled]="!tempVehicle.make" #model [(ngModel)]="tempVehicle.model">
+            <option selected="selected" disabled="disabled"></option>
+            <option *ngFor="let model of models" [value]="model">{{model}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="color">Color: </label>
+      <input name="color" type="text" #color [(ngModel)]="tempVehicle.color" />
+    </div>
+  </section>
+</form>

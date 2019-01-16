@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-xs-12">
+    <clr-datagrid>
+      <clr-dg-column>Date</clr-dg-column>
+      <clr-dg-column>Odometer</clr-dg-column>
+      <clr-dg-column>Service Location</clr-dg-column>
+      <clr-dg-column>Work Done</clr-dg-column>
+      <clr-dg-column class="right">Cost</clr-dg-column>
+
+      <!-- "$event" is click data, "event" refers to the maintenance event! -->
+      <clr-dg-row *ngFor="let event of myEvents" (click)="eventClick($event, event)">
+        <clr-dg-cell id="date">{{event.date | date}}</clr-dg-cell>
+        <clr-dg-cell id="odometer">{{event.odometer}}</clr-dg-cell>
+        <clr-dg-cell id="location">{{displayLocation(event)}}</clr-dg-cell>
+        <clr-dg-cell id="tasks">{{displayTasks(event)}}</clr-dg-cell>
+        <clr-dg-cell id="cost">{{event.cost | currency:'USD':true}}</clr-dg-cell>
+
+          <clr-dg-row-detail *clrIfExpanded>
+            {{event.notes || 'no notes entered'}}
+          </clr-dg-row-detail>
+
+      </clr-dg-row>
+
+      <clr-dg-footer>{{myEvents.length}} events</clr-dg-footer>
+    </clr-datagrid>
+  </div>
+</div>

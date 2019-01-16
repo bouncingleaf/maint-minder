@@ -1,0 +1,17 @@
+<a class="btn btn-primary" routerLink="../add">Add maintenance or repair</a>
+<app-home-event-list *ngIf="anyEvents()"></app-home-event-list>
+<div *ngIf="!anyEvents()" class="col-xs-6">
+    <h2>
+      Welcome to Maint Minder!
+    </h2>
+    <p>
+      Maint Minder helps you keep track of any maintenance and repair work on your vehicle.
+    </p>
+    <p>
+      To get started, you can tell us about your vehicle and location, or you can just go
+      directly to adding maintenance or repair information.
+    </p>
+    <p>
+      Happy travels!
+    </p>
+  </div>
