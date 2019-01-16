@@ -1,27 +1,32 @@
+
 # MaintMinder
 
+This is Jessica Roy's final project for MET CS 701 at Boston University.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
 
-## Development server
+## How to run Maint Minder
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+From a command line:
+1. Change to the maint-minder folder within the FinalProject_Roy folder
+2. Run: npm install
+3. As a first-time user, Maint Minder won't find any information for you. 
+You can start by editing your location or vehicle information, or you can
+just go directly to entering maintenance events.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Future enhancements
 
-## Build
+In addition to the future enhancements listed in the presentation document, I
+wasn't able to finish the following features prior to the deadline:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+  * Attachments - Either click to add a file attachment to an event, or drag
+    and drop an attachment. I never did figure out why drop was crashing.
+  * Favorite tasks - I would like the user to be able to determine which 
+    maintenance tasks appear as checkboxes, which appear in the lookup to
+    add more, and which don't appear at all.
+  * Manually entered user locations - I wanted to give an option other than 
+    geolocation, but I ran out of time.
 
-## Running unit tests
+I've commented out the partial code for these features but I left the code 
+in place for future use.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
