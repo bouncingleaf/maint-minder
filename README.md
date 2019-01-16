@@ -30,3 +30,6 @@ wasn't able to finish the following features prior to the deadline:
 I've commented out the partial code for these features but I left the code 
 in place for future use.
 
+## Interesting lessons learned
+
+1. Don't commit your API key to github! Whoops. That API key has since been deleted...
