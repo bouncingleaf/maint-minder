@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-// import { Jsonp, Response, URLSearchParams } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
-
-// import { map } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 import { Make } from './../models/make';
 
@@ -13,7 +11,9 @@ export class VehicleFinderService {
   // carquery's model years start at 1941
   private baseYear = 1940;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+    ) {}
 
   public yearOk(year: number) {
     if (!year) {
@@ -23,62 +23,72 @@ export class VehicleFinderService {
     }
   }
 
-  private getMakesFromAPI(year?: number) {
-    // const params = new URLSearchParams();
-    // params.set('cmd', 'getMakes');
-    // params.set('sold_in_us', '1');
-    // params.set('callback', 'JSONP_CALLBACK');
-    // if (this.yearOk(year)) {
-    //   params.set('year', year.toString());
-    // }
-    // return this.jsonp
-    //   .get(this.url, { search: params })
-    //   .map((res: Response) => res.json());
+  getMakesFromAPI(year?: number) {
+    const params = new HttpParams()
+    .set('cmd', 'getMakes')
+    .set('sold_in_us', '1')
+    .set('callback', 'JSONP_CALLBACK');
+    if (this.yearOk(year)) {
+      params.set('year', year.toString());
+    }
+    const options = params.toString();
+
+    return this.http.jsonp(`${this.url}?${options}`, 'JSONP_CALLBACK').pipe(
+      map((res) => {
+        console.log(res);
+        return res;
+      })
+    );
   }
 
   public getMakes(year?: number): Make[] {
     const allMakes: Make[] = [];
-    // let oneMake: any;
-    // this.getMakesFromAPI(year)
-    //   .subscribe(result => {
-    //     while (result.Makes.length > 0) {
-    //       oneMake = result.Makes.shift();
-    //       if (oneMake.make_is_common === '1') {
-    //         allMakes.push(new Make(oneMake.make_id, oneMake.make_display));
-    //       }
-    //     }
-    //   });
+    let oneMake: any;
+    this.getMakesFromAPI(year)
+      .subscribe(result => {
+        while (result['Makes'].length > 0) {
+          oneMake = result['Makes'].shift();
+          if (oneMake.make_is_common === '1') {
+            allMakes.push(new Make(oneMake.make_id, oneMake.make_display));
+          }
+        }
+      });
     return allMakes;
   }
 
   // Models
 
   private getModelsFromAPI(makeID: string, year?: number) {
-    // const params = new URLSearchParams();
-    // params.set('cmd', 'getModels');
-    // params.set('sold_in_us', '1');
-    // params.set('callback', 'JSONP_CALLBACK');
-    // params.set('make', makeID);
-    // if (this.yearOk(year)) {
-    //   params.set('year', year.toString());
-    // }
-    // return this.jsonp
-    //   .get(this.url, { search: params })
-      // .map((res: Response) => res.json());
+    const params = new HttpParams()
+    .set('cmd', 'getModels')
+    .set('sold_in_us', '1')
+    .set('callback', 'JSONP_CALLBACK')
+    .set('make', makeID);
+    if (this.yearOk(year)) {
+      params.set('year', year.toString());
+    }
+    const options = params.toString();
+
+    return this.http.jsonp(`${this.url}?${options}`, 'JSONP_CALLBACK').pipe(
+      map((res) => {
+        console.log('got models', res);
+        return res;
+      })
+    );
   }
 
   public getModels(make: Make, year?: number): string[] {
     const allModels: string[] = [];
-    // let oneModel: any;
-    // this.getModelsFromAPI(make.id, year)
-    //   .subscribe(result => {
-    //     while (result.Models.length > 0) {
-    //       oneModel = result.Models.shift();
-    //       if (oneModel.model_is_common !== '0') {
-    //         allModels.push(oneModel.model_name);
-    //       }
-    //     }
-    //   });
+    let oneModel: any;
+    this.getModelsFromAPI(make.id, year)
+      .subscribe(result => {
+        while (result['Models'].length > 0) {
+          oneModel = result['Models'].shift();
+          if (oneModel.model_is_common !== '0') {
+            allModels.push(oneModel.model_name);
+          }
+        }
+      });
     return allModels;
   }
 

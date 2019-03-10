@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { Vehicle } from './../models/vehicle';
 import { Make } from './../models/make';
@@ -15,8 +14,8 @@ import { VehicleFinderService } from './../services/vehicle-finder.service';
 })
 export class VehicleComponent implements OnInit {
   tempVehicle: Vehicle;
-  tempVehicleMakeName: string;
   makes: Make[];
+  makesSubscription: Subscription;
   models: string[];
   validYears: number[];
 
@@ -27,10 +26,12 @@ export class VehicleComponent implements OnInit {
   ngOnInit() {
     this.validYears = this.vehicleService.validYears();
     this.tempVehicle = this.shared.getMyVehicle();
+    console.log('I got', this.tempVehicle);
     this.refreshDropdownData();
   }
 
   refreshDropdownData() {
+    console.log('refreshing', this.tempVehicle);
     if (!this.tempVehicle.make) {
       this.makes = this.vehicleService.getMakes(this.tempVehicle.year);
     } else if (!this.tempVehicle.model) {
@@ -39,7 +40,9 @@ export class VehicleComponent implements OnInit {
   }
 
   selectedMake() {
-    this.tempVehicle.make = this.makes.find((make) => make.name === this.tempVehicleMakeName);
+    console.log('selectedMake', this.makes, this.tempVehicle.make.name);
+
+    this.tempVehicle.make = this.makes.find((make) => make.name === this.tempVehicle.make.name);
     this.refreshDropdownData();
   }
 
@@ -49,7 +52,8 @@ export class VehicleComponent implements OnInit {
   }
 
   clear() {
-    this.tempVehicleMakeName = null;
+    console.log('clear');
+
     this.tempVehicle.make = this.tempVehicle.model = this.tempVehicle.color = this.tempVehicle.year = null;
     this.shared.clearMyVehicle();
   }

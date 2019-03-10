@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 // import { RouterModule, Routes } from '@angular/router';
-// import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { ClarityModule } from '@clr/angular';
 
 /* App root */
@@ -50,6 +50,8 @@ import { StorageService } from './services/storage.service';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
     ClarityModule,
   ],
   providers: [SharedDataService, StorageService],

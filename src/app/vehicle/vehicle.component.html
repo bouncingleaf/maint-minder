@@ -22,10 +22,10 @@
       <label for="make">Make: </label>
       <div class="select">
         <!-- This updates the real tempVehicle object and refreshes the make lookup -->
-        <select name="make" #make [(ngModel)]="tempVehicleMakeName" (change)="selectedMake()">
+        <select name="make" #make [(ngModel)]="tempVehicle.make" (change)="selectedMake()">
         <!-- This tricks HTML into not selecting the first alphabetical option by default, e.g. Acura -->
         <option selected="selected" disabled="disabled"></option>
-        <option *ngFor="let make of makes" [value]="make.name">{{make.name}}</option>
+        <option *ngFor="let make of makes" [value]="make">{{make.name}} hey</option>
       </select>
       </div>
     </div>
